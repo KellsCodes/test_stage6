@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket         = "anyitech-microservice-state-001"  # Must match backend-setup bucket name
+    bucket         = "devops-stage-6-terraform-state-ifeanyinw"  # Must match backend-setup bucket name
     key            = "microservice/terraform.tfstate"
     region         = "eu-north-1"
     dynamodb_table = "terraform-locks"
