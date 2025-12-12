@@ -1,0 +1,36 @@
+---
+# deploy/tasks/main.yml
+# Only tasks, no hosts/become at this level
+
+- name: Clone or update application repository
+  git:
+    repo: "https://github.com/Joeonome/DevOps-Stage-6-project.git" #############Change tis repo link
+    dest: "/home/ubuntu/stage6-app"
+    version: main
+    update: yes
+    force: yes
+  register: git_result
+
+- name: Start services with Docker Compose
+  shell: |
+    cd /home/ubuntu/stage6-app
+    docker compose pull
+    docker compose up -d
+  args:
+    chdir: "/home/ubuntu/stage6-app"
+  register: compose_result
+  changed_when: "'Creating' in compose_result.stdout or git_result.changed"
+  environment:
+    COMPOSE_HTTP_TIMEOUT: 200
+
+- name: Create directory for Traefik ACME certificates
+  file:
+    path: "/home/ubuntu/stage6-app/acme"
+    state: directory
+    mode: 0755
+
+- name: Restart Traefik container
+  command: docker compose restart traefik
+  args:
+    chdir: /home/ubuntu/stage6-app
+
