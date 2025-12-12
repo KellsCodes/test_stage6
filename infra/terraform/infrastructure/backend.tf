@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
     bucket         = "devops-stage-6-terraform-state-ifeanyinw"  # Must match backend-setup bucket name
-    key            = "microservice/terraform.tfstate"
-    region         = "eu-north-1"
+    key            = "terraform.tfstate"
+    region         = "us-east-1"
     dynamodb_table = "terraform-locks"
     encrypt        = true
   }
