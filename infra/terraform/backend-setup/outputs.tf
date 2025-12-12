@@ -1,5 +1,5 @@
 output "s3_bucket_name" {
-  value       = aws_s3_bucket.terraform_state.id
+  value       = devops-stage-6-terraform-state-ifeanyinw
   description = "Name of the S3 bucket for Terraform state"
 }
 
@@ -9,7 +9,7 @@ output "s3_bucket_arn" {
 }
 
 output "dynamodb_table_name" {
-  value       = aws_dynamodb_table.terraform_locks.id
+  value       = terraform-locks
   description = "Name of the DynamoDB table for state locking"
 }
 
@@ -25,10 +25,10 @@ output "backend_config" {
     
     terraform {
       backend "s3" {
-        bucket         = "${aws_s3_bucket.terraform_state.id}"
+        bucket         = "${devops-stage-6-terraform-state-ifeanyinw}"
         key            = "microservice/terraform.tfstate"
         region         = "${var.aws_region}"
-        dynamodb_table = "${aws_dynamodb_table.terraform_locks.id}"
+        dynamodb_table = "${terraform-locks}"
         encrypt        = true
       }
     }
