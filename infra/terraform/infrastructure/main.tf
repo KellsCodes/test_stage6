@@ -6,6 +6,7 @@ provider "aws" {
 resource "aws_security_group" "micro_service" {
   name        = "micro_service"
   description = "Allow SSH and Web Traffic"
+   vpc_id      = "vpc-0df2f2bc805f9a67c"
 
   # SSH access
   ingress {
