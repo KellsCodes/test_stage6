@@ -1,4 +1,4 @@
-aws_region             = "us-east-1"
+aws_region             = "eu-north-1"
 ami_id                 = "ami-01fd6fa49060e89a6"  # Ubuntu 22.04 LTS for eu-north-1
 instance_type          = "t3.medium"
 key_name               = "hng13"  # CHANGE THIS to your AWS key pair name
